@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b1220" />
+    <title>Weather And Date</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <!-- FIX #5: removed unused id="weather-body" -->
+  <body>
+    <div class="container">
+      <header class="page_header">
+        <img src="logo.svg" alt="Weather logo" class="logo" />
+        <div class="brand_text">
+          <h1>Weather And Date</h1>
+          <!-- FIX #4: corrected "2-day" to "3-day" to match actual forecast output -->
+          <p>Premium weather insights including a 3-day outlook.</p>
+        </div>
+      </header>
+
+      <!-- Data disclaimer modal (hidden by default) -->
+      <div
+        id="disclaimerModal"
+        class="modal hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="disclaimerTitle"
+      >
+        <div class="modal_content">
+          <h2 id="disclaimerTitle">Data disclaimer</h2>
+          <p>
+            We use third‑party weather data and cannot guarantee its accuracy.
+            Data supplied by WeatherAPI.
+          </p>
+          <div class="modal_actions">
+            <button id="agreeDisclaimer" class="btn primary">
+              Agree &amp; Continue
+            </button>
+            <button id="closeDisclaimer" class="btn secondary">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="install_prompt hidden" id="installPrompt">
+        <div>
+          <strong>Install Weather And Date</strong>
+          <p>Save this app to your home screen for faster access.</p>
+        </div>
+        <div class="install_actions">
+          <button type="button" id="installButton" class="install_button">
+            Install app
+          </button>
+          <button
+            type="button"
+            id="installCloseButton"
+            class="install_close"
+            aria-label="Close install prompt"
+          >
+            ×
+          </button>
+        </div>
+      </div>
+
+      <nav class="search_panel">
+        <form>
+          <input
+            type="text"
+            id="searchInput"
+            name="city"
+            placeholder="Enter city name"
+            class="search_area"
+            autocomplete="off"
+          />
+          <div class="search_actions">
+            <button type="submit" class="search_button">See Weather</button>
+            <button type="button" id="clearHistoryButton" class="history_clear">
+              Clear history
+            </button>
+          </div>
+        </form>
+        <div class="history_footer">
+          <button type="button" id="useLocationButton" class="location_button">
+            Show my local weather
+          </button>
+          <div class="history_dropdown hidden" id="historyDropdown"></div>
+        </div>
+      </nav>
+
+      <div class="weather_container">
+        <div class="toast hidden" id="toast"></div>
+        <div class="loader hidden"></div>
+
+        <div class="weather_card">
+          <div class="weather_top">
+            <div class="current_panel">
+              <div class="temp_group">
+                <div class="temp">--°C</div>
+                <button type="button" id="unitToggle" class="unit_toggle">
+                  °C
+                </button>
+              </div>
+              <div class="weather_status">
+                <img class="weather_icon" src="" alt="weather icon" />
+                <p class="condition_text">Loading weather...</p>
+              </div>
+            </div>
+
+            <div class="weather_meta">
+              <div class="meta_item">
+                <span id="windValue">-- km/h</span>
+                <small>Wind</small>
+              </div>
+              <div class="meta_item">
+                <span id="humidityValue">--%</span>
+                <small>Humidity</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="time_location">
+            <p></p>
+            <span></span>
+          </div>
+
+          <div class="forecast_strip hidden" id="forecastStrip"></div>
+        </div>
+
+        <div class="skeleton hidden" id="skeleton">
+          <div class="skeleton_row">
+            <div class="skeleton_box large"></div>
+            <div class="skeleton_box small"></div>
+          </div>
+          <div class="skeleton_row spaced">
+            <div class="skeleton_circle"></div>
+            <div class="skeleton_box medium"></div>
+          </div>
+          <div class="skeleton_strip">
+            <div class="skeleton_card"></div>
+            <div class="skeleton_card"></div>
+            <div class="skeleton_card"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIX #1: footer with disclaimer link added — was completely missing,
+           causing openDisclaimerLink to always be null in script.js -->
+      <footer style="text-align: center; padding: 8px 0 0; margin-top: auto">
+        <a href="#" id="openDisclaimerLink" class="disclaimer_link">
+          Data disclaimer · WeatherAPI
+        </a>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

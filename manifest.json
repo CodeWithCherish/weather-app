@@ -1,0 +1,21 @@
+{
+  "name": "Weather Forecaster",
+  "short_name": "WeatherApp",
+  "description": "Premium weather insights with a crisp 3-day outlook.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "icons": [
+    {
+      "src": "logo.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
